@@ -1,5 +1,5 @@
 const audioPlayer = document.querySelector(".audio-player");
-const audio = new Audio("mp3/Everyday.mp3");
+const audio = new Audio("mp3/Forever Star.mp3");
 
 console.dir(audio);
 
