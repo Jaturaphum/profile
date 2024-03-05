@@ -1,84 +1,74 @@
 const audioPlayer = document.querySelector(".audio-player");
 const audio = new Audio("mp3/Forever Star.mp3");
 
-audio.addEventListener("loadeddata", () => {
-  const length = audioPlayer.querySelector(".time .length");
-  length.textContent = getTimeCodeFromNum(audio.duration);
-  audio.volume = 0.75;
-}, false);
+console.dir(audio);
+
+audio.addEventListener(
+  "loadeddata",
+  () => {
+    audioPlayer.querySelector(".time .length").textContent = getTimeCodeFromNum(
+      audio.duration
+    );
+    audio.volume = .75;
+  },
+  false
+);
+
 
 const timeline = audioPlayer.querySelector(".timeline");
-timeline.addEventListener("click", (e) => {
-  const timelineWidth = parseInt(window.getComputedStyle(timeline).width);
-  audio.currentTime = (e.offsetX / timelineWidth) * audio.duration;
+timeline.addEventListener("click", e => {
+  const timelineWidth = window.getComputedStyle(timeline).width;
+  const timeToSeek = e.offsetX / parseInt(timelineWidth) * audio.duration;
+  audio.currentTime = timeToSeek;
 }, false);
 
-timeline.addEventListener("mousedown", (e) => {
-  const timelineWidth = parseInt(window.getComputedStyle(timeline).width);
-  audio.currentTime = (e.offsetX / timelineWidth) * audio.duration;
-  document.addEventListener("mousemove", mouseMove);
-  document.addEventListener("mouseup", mouseUp);
-
-  function mouseMove(e) {
-    const timelineWidth = parseInt(window.getComputedStyle(timeline).width);
-    audio.currentTime = (e.offsetX / timelineWidth) * audio.duration;
-  }
-
-  function mouseUp() {
-    document.removeEventListener("mousemove", mouseMove);
-    document.removeEventListener("mouseup", mouseUp);
-  }
-}, false);
 
 const volumeSlider = audioPlayer.querySelector(".controls .volume-slider");
-volumeSlider.addEventListener("click", (e) => {
-  const sliderWidth = parseInt(window.getComputedStyle(volumeSlider).width);
-  const newVolume = e.offsetX / sliderWidth;
+volumeSlider.addEventListener('click', e => {
+  const sliderWidth = window.getComputedStyle(volumeSlider).width;
+  const newVolume = e.offsetX / parseInt(sliderWidth);
   audio.volume = newVolume;
-  const volumePercentage = audioPlayer.querySelector(".controls .volume-percentage");
-  volumePercentage.style.width = newVolume * 100 + "%";
-}, false);
-
-volumeSlider.addEventListener("mousedown", (e) => {
-  const sliderWidth = parseInt(window.getComputedStyle(volumeSlider).width);
-  const newVolume = e.offsetX / sliderWidth;
-  audio.volume = newVolume;
-  const volumePercentage = audioPlayer.querySelector(".controls .volume-percentage");
-  volumePercentage.style.width = newVolume * 100 + "%";
-  document.addEventListener("mousemove", mouseMove);
-  document.addEventListener("mouseup", mouseUp);
-
-  function mouseMove(e) {
-    const sliderWidth = parseInt(window.getComputedStyle(volumeSlider).width);
-    const newVolume = e.offsetX / sliderWidth;
-    audio.volume = newVolume;
-    volumePercentage.style.width = newVolume * 100 + "%";
-  }
-
-  function mouseUp() {
-    document.removeEventListener("mousemove", mouseMove);
-    document.removeEventListener("mouseup", mouseUp);
-  }
-}, false);
+  audioPlayer.querySelector(".controls .volume-percentage").style.width = newVolume * 100 + '%';
+}, false)
 
 setInterval(() => {
   const progressBar = audioPlayer.querySelector(".progress");
-  progressBar.style.width = (audio.currentTime / audio.duration) * 100 + "%";
-  const currentTime = audioPlayer.querySelector(".time .current");
-  currentTime.textContent = getTimeCodeFromNum(audio.currentTime);
+  progressBar.style.width = audio.currentTime / audio.duration * 100 + "%";
+  audioPlayer.querySelector(".time .current").textContent = getTimeCodeFromNum(
+    audio.currentTime
+  );
 }, 500);
 
 const playBtn = audioPlayer.querySelector(".controls .toggle-play");
-playBtn.addEventListener("click", () => {
-  if (audio.paused) {
-    playBtn.classList.remove("play");
-    playBtn.classList.add("pause");
-    audio.play();
+playBtn.addEventListener(
+  "click",
+  () => {
+    if (audio.paused) {
+      playBtn.classList.remove("play");
+      playBtn.classList.add("pause");
+      audio.play();
+    } else {
+      playBtn.classList.remove("pause");
+      playBtn.classList.add("play");
+      audio.pause();
+    }
+  },
+  false
+);
+
+audioPlayer.querySelector(".volume-button").addEventListener("click", () => {
+  const volumeEl = audioPlayer.querySelector(".volume-container .volume");
+  audio.muted = !audio.muted;
+  if (audio.muted) {
+    volumeEl.classList.remove("icono-volumeMedium");
+    volumeEl.classList.add("icono-volumeMute");
   } else {
-    playBtn.classList.remove("pause");
+    volumeEl.classList.add("icono-volumeMedium");
+    volumeEl.classList.remove("icono-volumeMute");
   }
 });
 
+//turn 128 seconds into 2:08
 function getTimeCodeFromNum(num) {
   let seconds = parseInt(num);
   let minutes = parseInt(seconds / 60);
