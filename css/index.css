@@ -79,7 +79,7 @@ button {
 }
 
 .profile--open .profile__avatar {
-  transform: translate(-25.5%, -2.5em);
+  transform: translate(-33.5%, -2.5em);
   border-radius: 50%;
 }
 
@@ -109,7 +109,7 @@ button {
 .profile__avatar {
   position: absolute;
   z-index: 1;
-  transform: translateX(-25.5%);
+  transform: translateX(-33.5%);
   border-radius: 1.25em;
   overflow: hidden;
   width: 10em;
