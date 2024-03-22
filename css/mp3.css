@@ -1,6 +1,6 @@
 .player {
   width: 310px;
-  background-color: rgba(68, 68, 68, 0.5);
+  background-color: rgba(0, 0, 0, 0.356);
   display: grid;
   grid-template-columns: 48px 1fr 48px;
   grid-gap: 16px;
@@ -47,7 +47,7 @@
 
 .bar {
   --space: -4px;
-  background-color: #00000024;
+  background-color: #ffffff24;
   overflow: hidden;
   left: var(--space);
   right: var(--space);

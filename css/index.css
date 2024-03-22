@@ -79,7 +79,7 @@ button {
 }
 
 .profile--open .profile__avatar {
-  transform: translate(-33.5%, -2.5em);
+  transform: translate(-25.5%, -2.5em);
   border-radius: 50%;
 }
 
@@ -109,7 +109,7 @@ button {
 .profile__avatar {
   position: absolute;
   z-index: 1;
-  transform: translateX(-33.5%);
+  transform: translateX(-25.5%);
   border-radius: 1.25em;
   overflow: hidden;
   width: 10em;
@@ -370,11 +370,9 @@ a {
     top: 30%;
   }
 
-  .audio-player{
-    padding-left: 3em;
-    padding-right: 3em;
+  .player {
+ left: 2.3em;
   }
-
 
 }
 
@@ -416,13 +414,12 @@ a {
     font-size: 0.8em;
   }
 
-  .audio-player{
-    padding-left: 5em;
-    padding-right: 5em;
-  }
-
   .profile__form .div-center .div-social i {
     font-size: 1em;
   }
+
+  .player {
+    left: 2.3em;
+     }
 
 }
