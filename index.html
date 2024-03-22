@@ -71,37 +71,24 @@
         <!-- <audio controls>
             <source src="./mp3/Forever Star.mp3" type="audio/mp3">
           </audio> -->
-        <div class="audio-player">
-          <div class="timeline">
-            <div class="progress"></div>
+          <audio id="player" src="./music/Forever Star.mp3"></audio>
+          <div class="player">
+            <div class="control">
+              <i class="fas fa-play" id="playbtn"></i>
+            </div>
+            <div class="info">
+              張洢豪-Forever Star
+              <div class="bar">
+                <div id="progress"></div>
+              </div>
+            </div>
+            <div id="current">0:00</div>
           </div>
-          <div class="controls">
-            <div class="play-container">
-              <div class="toggle-play play">
-              </div>
-            </div>
-            <div class="time">
-              <div class="current">0:00</div>
-              <div class="divider">/</div>
-              <div class="length"></div>
-            </div>
-            <div class="name">Forever Star</div>
-            <div class="volume-container">
-              <div class="volume-button">
-                <div class="volume icono-volumeMedium"></div>
-              </div>
-
-              <div class="volume-slider">
-                <div class="volume-percentage"></div>
-              </div>
-            </div>
-          </div>
-        </div>
         <p style="color: #777777; text-align: center; ">.html .css .javascript .mp3</p>
       </div>
   </section>
   <script src="./javascript/down.js"></script>
-  <script src="./javascript/mp3.js"></script>
+  <script src="./javascript/player.js"></script>
 </body>
 
 </html>
